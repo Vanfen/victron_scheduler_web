@@ -1,0 +1,1 @@
+{"Schedules": [{"StartWeekday": -1, "StartTime": -1, "EndWeekday": -1, "EndTime": -1}]}

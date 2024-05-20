@@ -1,0 +1,48 @@
+input.invalid:focus{
+    border-color: #ff00005e;
+    box-shadow: rgb(221 21 21 / 25%) 0px 0px 0px 0.25rem;
+}
+
+input {
+    color: black !important ;
+}
+
+#victron_notification.error{
+    color: rgb(199 25 25);
+}
+
+#victron_notification.success{
+    color: rgb(54, 174, 10);
+}
+
+#last_update_time{
+    font-size: 0.8rem;
+}
+
+#show_password{
+    cursor: pointer;
+}
+
+#instructions{
+    position: relative;
+    top:0px;
+    bottom:0px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: none;
+}
+
+#instructions_button{
+    border-radius: 12px;
+    background-color: #ececec;
+    color: black;
+    border-color: none;
+    border-width: 0;
+    padding: 10px;
+}
+#victron_block {
+    justify-content: space-between;
+    display: flex;
+    vertical-align: 20%;
+}
