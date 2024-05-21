@@ -1,3 +1,4 @@
+from typing import List
 from dotenv import load_dotenv
 from pathlib import Path
 import json
@@ -29,6 +30,6 @@ def get_price_to_compare():
     with open("data/price_to_compare.txt") as file:
         return {"Price": file.readline()}
     
-@data_router.post("/victron_log", response_model=[VictronScheduleShow])
+@data_router.post("/victron_log", response_model=List[VictronScheduleShow])
 def get_victron_log(latest: bool = True):
     return get_victron_activity_log(latest=latest)
