@@ -1,6 +1,5 @@
 import base64
 import datetime
-import json
 from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import HTTPException, status
@@ -75,12 +74,19 @@ def set_victron_data(data: VictronDataCreate, user_email: str, db: Session):
         raise credentials_exception
     
     db_data = db.query(VictronEnergy).filter(VictronEnergy.user_id == user.id).first()
+    email_check = db.query(VictronEnergy).filter(VictronEnergy.email == data.email and VictronEnergy.user_id != user.id).first()
+    if email_check:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="The email you are trying to set is already in use by someone.",
+        )
     print(data.password)
     password = base64.b64encode(data.password.encode("utf-8"))
     print(password)
     if db_data:
-        db_data.email = data.email
-        db_data.password= password
+        if db_data.email != data.email:
+            db_data.email = data.email
+        db_data.password = password
         db_data.portal_id = data.portal_id
         db_data.price_to_compare = data.price_to_compare
         db.commit()
